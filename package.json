@@ -1,0 +1,33 @@
+{
+    "devDependencies": {
+        "eslint": "^5.12.0",
+        "eslint-config-airbnb-base": "^13.1.0",
+        "eslint-config-prettier": "^3.3.0",
+        "eslint-plugin-import": "^2.14.0",
+        "husky": "^1.3.1",
+        "lint-staged": "^8.1.0",
+        "prettier": "^1.15.3",
+        "spacejam": "^1.6.1"
+    },
+    "scripts": {
+        "tests": "npx spacejam test-packages ../execution-cache/",
+        "prettier": "npx prettier --write '*.js'; npx prettier --write '*.md'; npx prettier --write package.json",
+        "eslint": "npx eslint *.js"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.js": [
+            "npm run prettier",
+            "npm run eslint",
+            "git add"
+        ],
+        "*.md": [
+            "npm run prettier",
+            "git add"
+        ]
+    }
+}
